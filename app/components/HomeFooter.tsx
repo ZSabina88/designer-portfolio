@@ -10,6 +10,7 @@ const FooterText: React.FC = () => {
             <h3>ADOBE ILLUSTRATOR</h3>
             <h3>CORONA</h3>
             <h3>V-RAY</h3>
+            <h3>CHOAS VANTAGE</h3>
             <h3>SKETCHUP</h3>
         </div>
     )

@@ -29,14 +29,11 @@ body {
   height: 100vh;
   color: var(--foreground);
   background: #051432;
-  font-family: Arial, Helvetica, sans-serif;
-}
-nav{
-  background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(23,23,23,1) 100%);
+  font-family: Cardo,  sans-serif;
 }
 
 h1 {
-  @apply text-6xl font-cardo italic
+  @apply text-6xl
 }
 
 h3 {

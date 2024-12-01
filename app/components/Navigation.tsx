@@ -1,28 +1,54 @@
 'use client';
 import Link from "next/link";
+import { useState } from "react";
 import { CgMenuRight } from "react-icons/cg";
 import { useToggle } from "../hooks/useToggle";
+import { motion } from "framer-motion";
+import { PiTriangleFill } from "react-icons/pi";
+
+const menuItems = [
+  { text: "Home", href: "/", leftPosition: 0 },
+  { text: "About", href: "/about", leftPosition: 80 },
+  { text: "Design", href: "/design", leftPosition: 168 },
+  { text: "Architecture", href: "/architecture", leftPosition: 295 },
+  { text: "Graphic Design", href: "/graphic-design", leftPosition: 465 },
+  { text: "Contact Me", href: "/contact", leftPosition: 627 },
+]
 
 
 const Navigation: React.FC = () => {
   const [menubar, setMenubar] = useToggle(false);
+  const [active, setActive] = useState(0);
+
   return (
-    <menu className="absolute top-10 right-4 w-[60%] flex flex-row justify-center  ml-auto z-50">
-      <button className="absolute top-1 right-4" onClick={() => setMenubar()}>
+    <header className="w-[100vw] h-[50px] flex flex-row justify-end items-center gap-12 fixed top-4">
+      <menu className="relative">
+        {menubar && (
+          <>
+            <motion.nav className="flex flex-row gap-4 text-lg uppercase"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, ease: "easeIn", opacity: 1 }}
+              transition={{ duration: 2, }}
+            >
+              {menuItems.map((item, index) => (
+                <Link onClick={() => setActive(index)} key={index} href={item.href}>{item.text}</Link>
+              ))}
+            </motion.nav>
+            <motion.div className={`absolute top-8 left-5`}
+              initial={{opacity: 0}}
+              animate={{ x: menuItems[active].leftPosition, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <PiTriangleFill size={14} color="white" />
+            </motion.div>
+          </>
+        )}
+      </menu>
+      <button className="pr-4" onClick={() => setMenubar()}>
         <CgMenuRight color="white" size={36} className="cursor-pointer" />
       </button>
-      {menubar && (
-        <nav className="w-full h-[50px] flex flex-row items-center pl-4 mr-8 gap-8 text-black rounded-l-full">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/design">Design</Link>
-          <Link href="/architecture">Architecture</Link>
-          <Link href="/graphic-design">Graphic Design</Link>
-          <Link href="/contact">Contact Me</Link>
-        </nav>
+    </header>
 
-      )}
-    </menu>
   );
 }
 

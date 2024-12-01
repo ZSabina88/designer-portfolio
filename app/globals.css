@@ -1,21 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Lexend:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #171717;
+  --foreground: #ffffff;
+  --delay: 15s;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* --background: #152441; */
+    /* --background: #0a0a0a; */
     --foreground: #ededed;
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  width: 100vw;
+  height: 100vh;
   color: var(--foreground);
-  background: var(--background);
+  background: #051432;
   font-family: Arial, Helvetica, sans-serif;
+}
+nav{
+  background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(23,23,23,1) 100%);
+}
+
+h1 {
+  @apply text-6xl font-cardo italic
+}
+
+h3 {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+}
+
+h2 {
+  @apply text-7xl font-cardo italic
+}
+
+.blob {
+  border-radius: 70% 45% 50% 60% / 60% 50% 45% 70%;
+  animation: blob 10s infinite ease-in;
+}
+
+@keyframes blob {
+  0% {
+    border-radius: 70% 45% 50% 60% / 60% 50% 45% 70%;
+  }
+  25% {
+    border-radius: 65% 55% 55% 50% / 50% 55% 60% 65%;
+  }
+  50% {
+    border-radius: 70% 40% 80% 45% / 45% 80% 40% 70%;
+  }
+  75% {
+    border-radius: 60% 50% 65% 55% / 55% 65% 50% 60%;
+  }
+  100% {
+    border-radius: 70% 45% 50% 60% / 60% 50% 45% 70%;
+  }
+}
+.scrolling{
+  mask-image: linear-gradient(90deg, transparent, black 40%, black 60%, transparent);
+}
+
+.scrolling:hover div{
+  animation-play-state:paused;
+}
+
+.scrolling div{
+  animation: scrolling 15s linear infinite;
+  /* -webkit-text-stroke: 0.1px black ; */
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

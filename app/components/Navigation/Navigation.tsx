@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CgMenuRight } from "react-icons/cg";
-import { useToggle } from "../hooks/useToggle";
+import { useToggle } from "../../hooks/useToggle";
 import { motion } from "framer-motion";
 import { PiTriangleFill } from "react-icons/pi";
 
@@ -34,12 +34,17 @@ const Navigation: React.FC = () => {
                 <Link onClick={() => setActive(index)} key={index} href={item.href}>{item.text}</Link>
               ))}
             </motion.nav>
-            <motion.div className={`absolute top-8 left-5`}
-              initial={{opacity: 0}}
-              animate={{ x: menuItems[active].leftPosition, opacity: 1 }}
-              transition={{ duration: 0.5 }}
+            <motion.div className="absolute top-8 left-5"
+              animate={{ x: menuItems[active].leftPosition }}
+              transition={{ duration: 0.5, ease: "easeIn" }}
             >
-              <PiTriangleFill size={14} color="white" />
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1.2 }}
+              >
+                <PiTriangleFill size={14} color="white" />
+              </motion.span>
             </motion.div>
           </>
         )}

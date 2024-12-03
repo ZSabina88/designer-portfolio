@@ -1,0 +1,21 @@
+.scrolling{
+    mask-image: linear-gradient(90deg, transparent, black 40%, black 60%, transparent);
+  }
+  
+  .scrolling:hover div{
+    animation-play-state:paused;
+  }
+  
+  .scrolling div{
+    animation: scrolling 15s linear infinite;
+    /* -webkit-text-stroke: 0.1px black ; */
+  }
+  
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }

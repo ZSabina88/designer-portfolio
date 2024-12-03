@@ -1,3 +1,5 @@
+import styles from './style.module.css';
+
 const FooterText: React.FC = () => {
     return (
         <div className='whitespace-nowrap flex flex-row justify-between gap-8'>
@@ -18,8 +20,7 @@ const FooterText: React.FC = () => {
 
 const HomeFooter: React.FC = () => {
     return (
-        // <footer className='scrolling overflow-hidden h-[80px] mt-auto mb-2 border-white border-y-2 border-dashed flex gap-4 items-center'>
-        <footer className='scrolling overflow-hidden h-[80px] mt-auto mb-2 flex gap-4 items-center'>
+        <footer className={`${styles.scrolling} overflow-hidden h-[80px] mt-auto mb-2 flex gap-4 items-center`}>
             <FooterText />
             <FooterText />
         </footer>

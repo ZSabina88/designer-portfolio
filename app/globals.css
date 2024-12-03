@@ -7,13 +7,10 @@
 :root {
   --background: #171717;
   --foreground: #ffffff;
-  --delay: 15s;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* --background: #152441; */
-    /* --background: #0a0a0a; */
     --foreground: #ededed;
   }
 }
@@ -32,9 +29,10 @@ body {
   font-family: Cardo,  sans-serif;
 }
 
-h1 {
-  @apply text-6xl
-}
+
+/* h1 {
+  @apply text-3xl
+} */
 
 h3 {
   font-size: 2rem;
@@ -67,24 +65,4 @@ h2 {
     border-radius: 70% 45% 50% 60% / 60% 50% 45% 70%;
   }
 }
-.scrolling{
-  mask-image: linear-gradient(90deg, transparent, black 40%, black 60%, transparent);
-}
 
-.scrolling:hover div{
-  animation-play-state:paused;
-}
-
-.scrolling div{
-  animation: scrolling 15s linear infinite;
-  /* -webkit-text-stroke: 0.1px black ; */
-}
-
-@keyframes scrolling {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}

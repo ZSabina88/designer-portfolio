@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CgMenuRight } from "react-icons/cg";
 import { useToggle } from "../../hooks/useToggle";
 import { motion } from "framer-motion";
@@ -20,6 +20,16 @@ const Navigation: React.FC = () => {
   const [menubar, setMenubar] = useToggle(false);
   const [active, setActive] = useState(0);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const currentIndex = menuItems.findIndex((item) => item.href === window.location.pathname);
+      if (currentIndex !== -1) {
+        setActive(currentIndex);
+        console.log(currentIndex);
+      }
+    }
+  }, []);
+
   return (
     <header className="w-[100vw] h-[50px] flex flex-row justify-end items-center gap-12 fixed top-4">
       <menu className="relative">
@@ -36,7 +46,7 @@ const Navigation: React.FC = () => {
             </motion.nav>
             <motion.div className="absolute top-8 left-5"
               animate={{ x: menuItems[active].leftPosition }}
-              transition={{ duration: 0.5, ease: "easeIn" }}
+              transition={{ duration: 0.5, type: "spring",  stiffness: 80 }}
             >
               <motion.span
                 initial={{ opacity: 0 }}

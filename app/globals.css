@@ -28,11 +28,13 @@ body {
   background: #051432;
   font-family: Cardo,  sans-serif;
 }
-
-
-/* h1 {
-  @apply text-3xl
-} */
+section {
+  padding-top: 5rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 h3 {
   font-size: 2rem;

@@ -20,7 +20,7 @@ const FooterText: React.FC = () => {
 
 const HomeFooter: React.FC = () => {
     return (
-        <footer className={`${styles.scrolling} overflow-hidden h-[80px] mt-auto mb-2 flex gap-4 items-center`}>
+        <footer className={`${styles.scrolling} overflow-hidden h-[80px] m-auto mb-2 flex gap-4 items-center`}>
             <FooterText />
             <FooterText />
         </footer>

@@ -1,9 +1,11 @@
 import React from 'react';
+import ArchSlider from '../components/ArchSlider/ArchSlider';
+import { sliderData } from '../utils/sliderData';
 
 const About: React.FC = () => {
   return (
-    <div>
-      <h1>About</h1>
+    <div >
+      <ArchSlider data={sliderData}/>
     </div>
   );
 }

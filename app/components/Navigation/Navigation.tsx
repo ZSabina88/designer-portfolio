@@ -25,7 +25,7 @@ const Navigation: React.FC = () => {
       const currentIndex = menuItems.findIndex((item) => item.href === window.location.pathname);
       if (currentIndex !== -1) {
         setActive(currentIndex);
-        console.log(currentIndex);
+        // console.log(currentIndex);
       }
     }
   }, []);

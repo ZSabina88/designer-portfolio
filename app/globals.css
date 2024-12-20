@@ -27,7 +27,14 @@ body {
   color: var(--foreground);
   background: #051432;
   font-family: Cardo,  sans-serif;
+  
 }
+
+main{
+  width: 100%;
+  overflow: hidden;
+}
+
 section {
   padding-top: 5rem;
   height: 100vh;

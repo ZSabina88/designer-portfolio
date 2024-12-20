@@ -1,24 +1,80 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, useAnimate, useInView } from 'framer-motion';
+import { useEffect } from 'react';
 
 const pathVariants = {
   hidden: {
-    // opacity: 0,
     pathLength: 0,
   },
   visible: {
-    // opacity: 1,
-    pathLength: 1,
-    // transition: {
-    //   duration: 2,
-    //   ease: "easeInOut",
-    // },
+    pathLength: 1
   },
-}
+};
 
-const ArchCard: React.FC = () => {
+
+const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
+  const [scope, animate] = useAnimate();
+  const isInView = useInView(scope);
+
+  useEffect(() => {
+    if (isInView) {
+      const cursorClick = async () => {
+        await animate(
+          "#border-cursor",
+          { scale: [1, 1.5, 1] },
+          { duration: 0.2, ease: "easeInOut" }
+        );
+        await animate(
+          "#border-cursor",
+          { x: 250 },
+          { duration: 1.9, ease: "easeInOut", delay: 0.1 }
+        );
+        await animate(
+          "#border-cursor",
+          { scale: [1, 1.5, 1] },
+          { duration: 0.2, ease: "easeInOut", delay: 0.2 }
+        );
+        await animate(
+          "#border-cursor",
+          { y: 289.7 },
+          { duration: 1.9, ease: "easeInOut", delay: 0.3 }
+        );
+        await animate(
+          "#border-cursor",
+          { scale: [1, 1.5, 1] },
+          { duration: 0.2, ease: "easeInOut", delay: 0.2 }
+        );
+        await animate(
+          "#border-cursor",
+          { x: 0 },
+          { duration: 1.9, ease: "easeInOut", delay: 0.2 }
+        );
+        await animate(
+          "#border-cursor",
+          { scale: [1, 1.5, 1] },
+          { duration: 0.2, ease: "easeInOut", delay: 0.2 }
+        );
+        await animate(
+          "#border-cursor",
+          { y: 0 },
+          { duration: 1.9, ease: "easeInOut", delay: 0.3 }
+        );
+        await animate(
+          "#border-cursor",
+          { scale: [1, 1.5, 1] },
+          { duration: 0.2, ease: "easeInOut", delay: 0.2 }
+        );
+        await animate(
+          "#border-cursor",
+          { display: 'none' },
+          { delay: 0.2 }
+        );
+      }
+      cursorClick();
+    }
+  }, [isInView]);
   return (
-    <div className="relative w-[250px] h-[300px] px-3 py-6 flex flex-col justify-between items-center">
+    <div className="relative w-[250px] h-[300px] px-3 py-12 flex flex-col justify-between items-center gap-4 " ref={scope} >
       <svg width="254" height="300" viewBox="0 0 254 300" fill="none"
         className='absolute top-0 left-0'
       >
@@ -26,69 +82,70 @@ const ArchCard: React.FC = () => {
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, ease: "easeInOut" }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
         />
         <motion.path d="M6 6H247" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, ease: "easeInOut" }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
         />
         <motion.path d="M253 0V300" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 1.9, ease: "easeInOut" }}
+          transition={{ duration: 2, delay: 3, ease: "easeInOut" }}
         />
         <motion.path d="M248 5V294" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 1.9, ease: "easeInOut" }}
+          transition={{ duration: 2, delay: 3, ease: "easeInOut" }}
         />
         <motion.path d="M252 299H2" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 3.7, ease: "easeInOut" }}
+          transition={{ duration: 2, delay: 5.5, ease: "easeInOut" }}
         />
         <motion.path d="M247 293H6" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 3.7, ease: "easeInOut" }}
+          transition={{ duration: 2, delay: 5.5, ease: "easeInOut" }}
         />
         <motion.path d="M7 292V7" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 5.5, ease: "easeInOut" }}
+          transition={{ duration: 2, delay: 8.1, ease: "easeInOut" }}
         />
         <motion.path d="M1 300V0" stroke="white" strokeWidth="2"
           variants={pathVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 5.5, ease: "easeInOut" }}
+          transition={{ duration: 2, delay: 8.1, ease: "easeInOut" }}
         />
       </svg>
-      <p>project name</p>
-      <p>size</p>
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-      className='absolute -top-3 -left-3'
+      <p>{name}</p>
+      <p>{size}</p>
+      <span ref={scope}>
+        <motion.svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+          className='absolute -top-3 -left-3  z-50'
+          style={{ filter: 'drop-shadow(0px 1px 1px lime)' }}
+          id="border-cursor"
+        >
+          <rect x="11.5" y="11.5" width="7" height="7" stroke="white" />
+          <path d="M15 0V30" stroke="white" strokeWidth="2" />
+          <path d="M0 15L30 15" stroke="white" strokeWidth="2" />
+        </motion.svg>
+      </span>
+      <button className=' w-[150px] h-[40px] border-white border-2 text-md rounded-sm mt-auto cursor-pointer z-50'
       >
-        <motion.rect x="12" y="12" width="6" height="6" stroke="white" strokeWidth= "0.5"
-        // initial={{ fill: "none" }}
-        // animate={{ fill: "white" }}
-        // transition={{ duration: 1,  }}
-        />
-        <path d="M15 0V30" stroke="white" />
-        <path d="M0 15L30 15" stroke="white" />
-      </svg>
-      <button className='w-[150px] h-[50px] bg-white text-black rounded-lg mt-auto'>Gallery</button>
+        Gallery
+      </button>
     </div>
   );
 }
 
 export default ArchCard;
-
-

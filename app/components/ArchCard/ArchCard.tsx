@@ -1,20 +1,11 @@
 'use client';
 import { motion, useAnimate, useInView } from 'framer-motion';
-import { useEffect } from 'react';
-
-const pathVariants = {
-  hidden: {
-    pathLength: 0,
-  },
-  visible: {
-    pathLength: 1
-  },
-};
+import { useEffect, useRef } from 'react';
 
 
 const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
   const [scope, animate] = useAnimate();
-  const isInView = useInView(scope);
+  const isInView = useInView(scope, { once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -69,8 +60,32 @@ const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
           { display: 'none' },
           { delay: 0.2 }
         );
+      };
+
+      const lineApppear = async ()=>{
+        await animate(
+          "#upper-line",
+          {pathLength:  1},
+          {duration: 2, delay: 0.3, ease: "easeInOut" }
+        );
+        await animate(
+          "#right-line",
+          {pathLength: 1},
+          {duration: 2, delay: 0.6, ease: "easeInOut" }
+        );
+        await animate(
+          "#bottom-line",
+          {pathLength: 1},
+          {duration: 2, delay: 0.6, ease: "easeInOut" }
+        );
+        await animate(
+          "#left-line",
+          {pathLength: 1},
+          {duration: 2, delay: 0.6, ease: "easeInOut" }
+        );
       }
       cursorClick();
+      lineApppear();
     }
   }, [isInView]);
   return (
@@ -79,52 +94,36 @@ const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
         className='absolute top-0 left-0'
       >
         <motion.path d="M2 1H252" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
+          initial={{ pathLength: 0 }}
+          id="upper-line"
         />
         <motion.path d="M6 6H247" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
+          initial={{ pathLength: 0 }}
+          id="upper-line"
         />
         <motion.path d="M253 0V300" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, delay: 3, ease: "easeInOut" }}
+          initial={{ pathLength: 0 }}
+          id="right-line"
         />
         <motion.path d="M248 5V294" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, delay: 3, ease: "easeInOut" }}
+          initial={{ pathLength: 0 }}
+          id="right-line"
         />
         <motion.path d="M252 299H2" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, delay: 5.5, ease: "easeInOut" }}
+          initial={{ pathLength: 0 }}
+          id="bottom-line"
         />
         <motion.path d="M247 293H6" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, delay: 5.5, ease: "easeInOut" }}
+          initial={{ pathLength: 0 }}
+          id="bottom-line"
         />
         <motion.path d="M7 292V7" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, delay: 8.1, ease: "easeInOut" }}
+          initial={{ pathLength: 0 }}
+          id="left-line"
         />
         <motion.path d="M1 300V0" stroke="white" strokeWidth="2"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 2, delay: 8.1, ease: "easeInOut" }}
+          initial={{ pathLength: 0 }}
+          id="left-line"
         />
       </svg>
       <p>{name}</p>

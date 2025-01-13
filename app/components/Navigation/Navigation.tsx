@@ -25,13 +25,12 @@ const Navigation: React.FC = () => {
       const currentIndex = menuItems.findIndex((item) => item.href === window.location.pathname);
       if (currentIndex !== -1) {
         setActive(currentIndex);
-        // console.log(currentIndex);
       }
     }
   }, []);
 
   return (
-    <header className="w-[100vw] h-[50px] flex flex-row justify-end items-center gap-12 fixed top-4">
+    <header className="w-[100vw] h-[50px] flex flex-row justify-end items-center gap-12 fixed top-4 z-100">
       <menu className="relative">
         {menubar && (
           <>

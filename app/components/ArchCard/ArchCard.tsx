@@ -1,6 +1,6 @@
 'use client';
 import { motion, useAnimate, useInView } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 
 const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
@@ -62,34 +62,42 @@ const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
         );
       };
 
-      const lineApppear = async ()=>{
+      const lineApppear = async () => {
         await animate(
           "#upper-line",
-          {pathLength:  1},
-          {duration: 2, delay: 0.3, ease: "easeInOut" }
+          { pathLength: 1 },
+          { duration: 2, delay: 0.3, ease: "easeInOut" }
         );
         await animate(
           "#right-line",
-          {pathLength: 1},
-          {duration: 2, delay: 0.6, ease: "easeInOut" }
+          { pathLength: 1 },
+          { duration: 2, delay: 0.6, ease: "easeInOut" }
         );
         await animate(
           "#bottom-line",
-          {pathLength: 1},
-          {duration: 2, delay: 0.6, ease: "easeInOut" }
+          { pathLength: 1 },
+          { duration: 2, delay: 0.6, ease: "easeInOut" }
         );
         await animate(
           "#left-line",
-          {pathLength: 1},
-          {duration: 2, delay: 0.6, ease: "easeInOut" }
+          { pathLength: 1 },
+          { duration: 2, delay: 0.6, ease: "easeInOut" }
         );
+      }
+      const cardContentAppear = async ()=> {
+        await animate(
+          "#card-content",
+          { opacity: 1 },
+          { duration: 0.6, ease: "easeInOut", delay: 10}
+        )
       }
       cursorClick();
       lineApppear();
+      cardContentAppear();
     }
   }, [isInView]);
   return (
-    <div className="relative w-[250px] h-[300px] px-3 py-12 flex flex-col justify-between items-center gap-4 " ref={scope} >
+    <div className="relative" ref={scope} >
       <svg width="254" height="300" viewBox="0 0 254 300" fill="none"
         className='absolute top-0 left-0'
       >
@@ -126,8 +134,6 @@ const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
           id="left-line"
         />
       </svg>
-      <p>{name}</p>
-      <p>{size}</p>
       <span ref={scope}>
         <motion.svg width="30" height="30" viewBox="0 0 30 30" fill="none"
           className='absolute -top-3 -left-3  z-50'
@@ -139,10 +145,17 @@ const ArchCard: React.FC<{ name: string, size: string }> = ({ name, size }) => {
           <path d="M0 15L30 15" stroke="white" strokeWidth="2" />
         </motion.svg>
       </span>
-      <button className=' w-[150px] h-[40px] border-white border-2 text-md rounded-sm mt-auto cursor-pointer z-50'
+      <motion.div className='w-[250px] h-[300px] flex flex-col justify-between items-center gap-4 px-3 py-12'
+      initial={{ opacity: 0 }}
+      id="card-content"
       >
-        Gallery
-      </button>
+        <p>{name}</p>
+        <p>{size}</p>
+        <button className=' w-[150px] h-[40px] border-white border-2 text-md rounded-sm mt-auto cursor-pointer z-50'
+        >
+          Gallery
+        </button>
+      </motion.div>
     </div>
   );
 }

@@ -1,15 +1,11 @@
-'use client';
 import TextField from '@mui/material/TextField';
-import { motion } from 'framer-motion';
+import PhoneInput from './PhoneInput';
+
 
 const ContactForm: React.FC = () => {
     return (
-        <motion.form className='flex flex-col items-center mt-6 gap-6 w-[50%] text-sm text-black'
-        initial= {{ opacity: 0, y: 20}}
-        animate= {{opacity: 1, y: 0}}
-        transition={{ duration: 1, delay: 0.5 }}
-        >
-            <TextField label="Name" variant="filled" required
+        <form className='flex flex-col items-center mt-2 gap-6 w-[50%] text-sm text-black'>
+            <TextField label="Name" variant="filled" required type='text'
                 sx={{
                     background: ' white', width: '100%', borderRadius: '10px 10px 0 0',
                     "& .MuiInputLabel-filled.Mui-focused": {
@@ -21,7 +17,7 @@ const ContactForm: React.FC = () => {
                     },
                 }}
             />
-            <TextField label="Email" variant="filled" required
+            <TextField label="Email" variant="filled" required type='email'
                 sx={{
                     background: ' white', width: '100%', borderRadius: '10px 10px 0 0',
                     "& .MuiInputLabel-filled.Mui-focused": {
@@ -33,6 +29,7 @@ const ContactForm: React.FC = () => {
                     },
                 }}
             />
+            <PhoneInput />
             <TextField
                 variant="filled"
                 sx={{
@@ -49,7 +46,7 @@ const ContactForm: React.FC = () => {
                 inputProps={{ maxLength: "150" }}
             />
             <button className='w-[100%] h-12 rounded-t-lg bg-orange-300 text-xl text-white'>SEND</button>
-        </motion.form>
+        </form>
     )
 }
 

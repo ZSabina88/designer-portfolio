@@ -2,34 +2,59 @@
 import { motion } from "framer-motion";
 
 const profession = [
-    { text: "Architect", delay: 0.4 },
-    { text: "3D Artist", delay: 0.6 },
-    { text: "UI/UX Designer", delay: 0.8 },
-    { text: "Graphic Designer", delay: 1 },
-    { text: "Interior Designer", delay: 1.2 },
-]
+    { text: "Architect" },
+    { text: "3D Artist" },
+    { text: "UI/UX Designer" },
+    { text: "Graphic Designer" },
+    { text: "Interior Designer" },
+];
+
+const variants = {
+    hidden: {x: 600}, 
+    visible: {
+        x: 0,
+        transition: {
+            duration: 0.5,
+            type: "spring",
+            stiffness: 60,
+            staggerChildren: 0.1,
+            when: "beforeChildren"
+        }
+    }
+};
+
+const childVariants = {
+    hidden: {x: 600}, 
+    visible: {
+        x: 0,
+        transition: {
+            // duration: 0.3,
+            type: "spring",
+            stiffness: 60
+        }
+    }
+};
 
 const Author: React.FC = () => {
     return (
-        <div className="mt-32 mr-4 w-[600px] flex flex-col gap-8 text-end overflow-hidden text-5xl" >
-            <motion.h1
-                initial={{ x: 600 }}
-                animate={{ x: 0 }}
-                transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 60 }}
+        <motion.div className="mt-32 mr-4 w-[600px] flex flex-col gap-8 text-end overflow-hidden text-5xl" 
+        variants= {variants}
+        initial="hidden"
+        animate="visible"
+        >
+            <h1
             >ORKHAN ZEYNALOV
-            </motion.h1>
+            </h1>
             {profession.map((item, index) => (
                 <motion.p
                     className="text-2xl italic"
                     key={index}
-                    initial={{ x: 300 }}
-                    animate={{ x: 0 }}
-                    transition={{ duration: 1, delay: item.delay, type: "spring", stiffness: 60 }}
+                    variants={childVariants}
                 >
                     {item.text}
                 </motion.p>
             ))}
-        </div>
+        </motion.div>
     );
 }
 
